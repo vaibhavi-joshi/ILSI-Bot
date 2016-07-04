@@ -9,7 +9,7 @@ APP_SECRET = "YszUtpojbuhVThz5hxGNzAx"
 const botService = new skype.BotService({
     messaging: {
         botId: "63f831ed-4469-4453-8330-d92d9929449d",
-        serverUrl : "",
+        serverUrl : "https://apis.skype.com",
         requestTimeout : 15000,
         appId: "63f831ed-4469-4453-8330-d92d9929449d",
         appSecret: "YszUtpojbuhVThz5hxGNzAx"
