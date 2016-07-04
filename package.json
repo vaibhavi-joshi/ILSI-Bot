@@ -1,0 +1,29 @@
+{
+  "name": "skypebot",
+  "version": "1.0.0",
+  "description": "This is part of poc",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm --help",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/is_corp/hr_bot.git"
+  },
+  "keywords": [
+    "SkypeBot",
+    "Bot"
+  ],
+  "author": "vaibhavi-joshi",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/is_corp/hr_bot#readme",
+  "engines": {
+    "node": ">=5.6.0"
+  },
+  "dependencies": {
+    "botbuilder": "^1.0.1",
+    "restify": "^4.1.1",
+    "skype-sdk": "file:skype-sdk.tar.gz"
+  }
+}
