@@ -36,12 +36,12 @@ request(options, function (error, response, body) {
    var jsonData = JSON.parse(body);
    if (jsonData.error)
    {
-//console.log('Error = ', jsonData.message);
+       console.log('Error = ', jsonData.message);
        callback(null,null,jsonData.message)
    }
    else{
-       // console.log('token = ', jsonData.token);
-		//console.log('emp_number =', jsonData.emp_number);
+        console.log('token = ', jsonData.token);
+		console.log('emp_number =', jsonData.emp_number);
         callback(jsonData.token,jsonData.emp_number,null)
    }
 	
@@ -62,13 +62,13 @@ request(options, function (error, response, body) {
    var jsonData = JSON.parse(body);
    if (jsonData.error)
    {
-       //console.log('Error = ', jsonData.message);
+       console.log('Error = ', jsonData.message);
 	   callback(null,jsonData.message);
        
    }
    else{
 		current_leave_count = jsonData.leave_count;
-	//	console.log('your leave balance is = ', current_leave_count);	
+		console.log('your leave balance is = ', current_leave_count);	
 		callback(current_leave_count,null)
 		
    }
@@ -86,13 +86,13 @@ bot.add('/login',[ function (session) {
 	},
 	function (session, results, next) {
 		username = results.response;
-	//	console.log('username = %s',username);
+		console.log('username = %s',username);
 		builder.Prompts.text(session, 'Enter your Domain Password');
 	},
 	function (session, results, next) {
 		password = results.response;
         session.send('Please wait... I am logging in for you...');
-		//console.log('passowrd = %s',password);
+		console.log('passowrd = %s',password);
 	
 
         //Call login API of HRMS with user Input
@@ -117,7 +117,7 @@ bot.add('/login',[ function (session) {
  function (session, results, next) {
 		if(results.response) {
 			var choice = results.response.entity;
-			//console.log('choice entered = %s', choice);
+			console.log('choice entered = %s', choice);
 			if(choice == "yes") {
 				//session.endDialog();
 				session.beginDialog("/login");
@@ -172,7 +172,7 @@ dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
 var server = restify.createServer();
 server.post('/v1/messages', bot.verifyBotFramework(), bot.listen());
 server.listen(process.env.port || 3978, function () {
- //   console.log('%s listening to %s', server.name, server.url); 
+    console.log('%s listening to %s', server.name, server.url); 
 });
 
 
