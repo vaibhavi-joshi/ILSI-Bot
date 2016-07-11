@@ -48,7 +48,7 @@ request(options, function (error, response, body) {
 });
 }
 
-function checkLeaveBalance(callback){
+function checkLeaveBalance(){
    // http://10.12.40.86/mobile/hrms_web_services/services/index.php?data={"method":"fetch_leave_count_by_type","params":{"user_id":"11311","leave_type":"LTY001","token":"Receivedfromloginresponse"}}
  var propertiesObject =  "data={\"method\":\"fetch_leave_count_by_type\",\"params\":{\"user_id\":\"" +emp_number+ "\",\"leave_type\":\"LTY001\",\"token\":\"" +sessionID+ "\"}}"    
 
@@ -63,14 +63,11 @@ request(options, function (error, response, body) {
    if (jsonData.error)
    {
        console.log('Error = ', jsonData.message);
-	   callback(null,jsonData.message);
-       
+       session.send('Something went wrong while checking for your leave balance, please try after sometime.');
    }
    else{
 		current_leave_count = jsonData.leave_count;
 		console.log('your leave balance is = ', current_leave_count);	
-		callback(current_leave_count,null)
-		
    }
 	
 });
@@ -108,8 +105,7 @@ bot.add('/login',[ function (session) {
 				sessionID = token;
 				emp_number = emp_num;
                 session.send('You are now logged into HRMS');
-                session.endDialog(); //For BotconnectorBot
-			  //session.replaceDialog('/'); //For Textbot to test scenario
+                session.endDialog();
 			}
 		}); 
        
@@ -138,17 +134,7 @@ dialog.on('CheckLeave', [function (session) {
 
 if (sessionID != null && emp_number != null) {
 		    session.send("your previous session is still alive, you can continue with HRMS Task..ask for check leave balance");
-            checkLeaveBalance(function (leave_count,error) {
-
-					if (error == null)
-					{
-						session.send('Your available leave balance is = %s',leave_count)
-					}
-					else
-					{
-							session.send('Something went wrong while checking for your leave balance, please try after sometime.');
-					}
-			});
+            checkLeaveBalance();
 		}//end elseif
 		else {
 			session.beginDialog('/login'); //do not have token so ask to login
