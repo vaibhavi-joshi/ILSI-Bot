@@ -171,13 +171,10 @@ request(options, function (error, response, body) {
 // Setup Restify Server
 
 var server = restify.createServer();
-server.use(bot.verifyBotFramework({appId:'ILSIBOT', appSecret:'bdb784cb093a461a858b2db0f6ba62b5' }));
-server.post('/v1/messages', bot.listen());
-
-var listener = server.listen(port, function () {
-	console.log('server started on port %s', listener.address().port);
+server.post('/v1/messages', bot.verifyBotFramework(), bot.listen());
+server.listen(process.env.port || 8081, function () {
+    console.log('%s listening to %s', server.name, server.url); 
 });
-
 
 
 
