@@ -6,7 +6,7 @@ var request = require('request');
 // Create bot and add dialogs
 
 //var bot = new builder.TextBot();
-var bot = new builder.BotConnectorBot({ appId: 'ILSIBOT', appSecret: 'bdb784cb093a461a858b2db0f6ba62b5' });
+var bot = new builder.BotConnectorBot();
 var port = process.env.PORT || 8081;
 var model = 'https://api.projectoxford.ai/luis/v1/application?id=814f9a05-0e84-41f4-aec9-f205211b3a46&subscription-key=0d6df140e73b4f07a204058a0769d60e';
 var dialog = new builder.LuisDialog(model);
@@ -171,12 +171,17 @@ request(options, function (error, response, body) {
 // Setup Restify Server
 
 var server = restify.createServer();
-server.post('/v1/messages', bot.verifyBotFramework(), bot.listen());
-server.listen(process.env.port || 8081, function () {
-    console.log('%s listening to %s', server.name, server.url); 
+// server.post('/v1/messages', bot.verifyBotFramework(), bot.listen());
+// server.listen(process.env.port || 8081, function () {
+//     console.log('%s listening to %s', server.name, server.url); 
+// });
+
+server.use(bot.verifyBotFramework({appId:'ILSIBOT', appSecret:'700e66ae12254460bb0598cac7bdcd28' }));
+server.post('/v1/messages', bot.listen());
+
+var listener = server.listen(port, function () {
+	console.log('Express server started on port %s', listener.address().port);
 });
-
-
 
 //bot.listenStdin()
 
