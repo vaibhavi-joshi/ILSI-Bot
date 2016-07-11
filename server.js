@@ -6,7 +6,7 @@ var request = require('request');
 // Create bot and add dialogs
 
 //var bot = new builder.TextBot();
-var bot = new builder.BotConnectorBot({appId:'ILSIBOT', appSecret:'bdb784cb093a461a858b2db0f6ba62b5' });
+var bot = new builder.BotConnectorBot();
 var model = 'https://api.projectoxford.ai/luis/v1/application?id=814f9a05-0e84-41f4-aec9-f205211b3a46&subscription-key=0d6df140e73b4f07a204058a0769d60e';
 var dialog = new builder.LuisDialog(model);
 
@@ -172,20 +172,20 @@ request(options, function (error, response, body) {
 // Setup Restify Server
 
 var server = restify.createServer();
-server.post('/v1/messages', bot.verifyBotFramework(), bot.listen());
-server.listen(process.env.port || 8080, function () {
-    console.log('%s listening to %s', server.name, server.url); 
-});
+// server.post('/v1/messages', bot.verifyBotFramework(), bot.listen());
+// server.listen(process.env.port || 8080, function () {
+//     console.log('%s listening to %s', server.name, server.url); 
+// });
 
 // var test = bot.verifyBotFramework({appId:'ILSIBOT', appSecret:'bdb784cb093a461a858b2db0f6ba62b5' })
 // console.log('value of test is %s', test);
 
-// server.use(bot.verifyBotFramework({appId:'ILSIBOT', appSecret:'bdb784cb093a461a858b2db0f6ba62b5' }));
-// server.post('/v1/messages', bot.listen());
+server.use(bot.verifyBotFramework({appId:'ILSIBOT', appSecret:'bdb784cb093a461a858b2db0f6ba62b5' }));
+server.post('/v1/messages', bot.listen());
 
-// var listener = server.listen(3978, function () {
-// 	console.log('server started on port %s', listener.address().port);
-// });
+var listener = server.listen(3978, function () {
+	console.log('server started on port %s', listener.address().port);
+});
 
 //bot.listenStdin()
 
