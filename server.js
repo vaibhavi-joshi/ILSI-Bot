@@ -7,7 +7,7 @@ var request = require('request');
 
 //var bot = new builder.TextBot();
 var bot = new builder.BotConnectorBot();
-var model = 'https://api.projectoxford.ai/luis/v1/application?id=814f9a05-0e84-41f4-aec9-f205211b3a46&subscription-key=0d6df140e73b4f07a204058a0769d60e&q=';
+var model = 'https://api.projectoxford.ai/luis/v1/application?id=814f9a05-0e84-41f4-aec9-f205211b3a46&subscription-key=0d6df140e73b4f07a204058a0769d60e';
 var dialog = new builder.LuisDialog(model);
 
 var host = "http://10.12.40.86"
