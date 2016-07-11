@@ -175,7 +175,7 @@ var server = restify.createServer();
 //     console.log('%s listening to %s', server.name, server.url); 
 // });
 
-server.use(bot.verifyBotFramework({appId:'ILSIBOT', appSecret:'700e66ae12254460bb0598cac7bdcd28' }));
+server.use(bot.verifyBotFramework({appId:'ILSIBOT', appSecret:'bdb784cb093a461a858b2db0f6ba62b5' }));
 server.post('/v1/messages', bot.listen());
 
 var listener = server.listen(3978, function () {
