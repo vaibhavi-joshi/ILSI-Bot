@@ -13,6 +13,7 @@ var dialog = new builder.LuisDialog(model);
 
 bot.add('/', dialog);
 
+
 dialog.on('CheckInHRMS', builder.DialogAction.send("Next Holiday is 'Independece Day' on Monday July 04 2016"));
 dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
 
