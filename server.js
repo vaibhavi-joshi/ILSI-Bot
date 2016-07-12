@@ -81,9 +81,6 @@ var current_leave_count = null
  );
 
 
- 
- 
-
  dialog.on('CheckLeave', [function (session) {
 if (sessionID != null && emp_number != null) {
 		    session.send("your previous session is still alive, you can continue with HRMS Task..ask for check leave balance");
@@ -99,6 +96,7 @@ if (sessionID != null && emp_number != null) {
 );
  dialog.on('CheckHoliday',function (session, args) {
 
+	console.log('holiday detected')
     session.send("Next Holiday is 'Independece Day' on Monday July 04 2016");
 });
  dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
