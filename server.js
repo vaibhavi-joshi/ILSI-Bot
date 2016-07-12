@@ -24,7 +24,9 @@ var server = restify.createServer();
  bot.add('/', dialog);
  
  server.get('/test', function(req, res, next) {
+	 console.log('called test');
 	 res.send('I am here'); 
+	 return next();
  });
 
 //  bot.add('/login',[ function (session) {
