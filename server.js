@@ -11,7 +11,7 @@
  
  bot.add('/', dialog);
  
- dialog.on('CheckInHRMS',function (session, args) {
+ dialog.on('CheckHoliday',function (session, args) {
 
     session.send("Next Holiday is 'Independece Day' on Monday July 04 2016");
 });
