@@ -11,17 +11,21 @@ var server = restify.createServer();
  var model = 'https://api.projectoxford.ai/luis/v1/application?id=814f9a05-0e84-41f4-aec9-f205211b3a46&subscription-key=0d6df140e73b4f07a204058a0769d60e';
  var dialog = new builder.LuisDialog(model);
 
-var host = "http://10.12.40.86"
-var base_url = "/mobile/hrms_web_services/services/index.php?"
+// var host = "http://10.12.40.86"
+// var base_url = "/mobile/hrms_web_services/services/index.php?"
 
 
-var sessionID = null
-var username = null
-var password = null
-var emp_number = null
-var current_leave_count = null
+// var sessionID = null
+// var username = null
+// var password = null
+// var emp_number = null
+// var current_leave_count = null
  
  bot.add('/', dialog);
+ 
+ server.get('/test', function(req, res, next) {
+	 res.send('I am here'); 
+ });
 
 //  bot.add('/login',[ function (session) {
 // 	 console.log('1');
