@@ -11,7 +11,10 @@
  
  bot.add('/', dialog);
  
- dialog.on('CheckInHRMS', builder.DialogAction.send("Next Holiday is 'Independece Day' on Monday July 04 2016"));
+ dialog.on('CheckInHRMS',function (session, args) {
+
+    session.send("Next Holiday is 'Independece Day' on Monday July 04 2016");
+});
  dialog.onDefault(builder.DialogAction.send("I'm sorry. I didn't understand."));
  
 
