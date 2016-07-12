@@ -140,6 +140,8 @@ request(options, function (error, response, body) {
 	
 });
 
+ }
+
 //**************************************** Restify server *******************************************************
  var server = restify.createServer();
 
